@@ -1,12 +1,12 @@
 %Intitialize Time
-d=0.01;
+d=0.01; %step value
 mx = 100/d;
 t=0:d:100;
 
 %Get current from user
 I=zeros(1,mx);
-c_value=input('Enter value of current(in uA):');
-c_time=input('Enter the time for which the current is applied(in ms, max:100ms):');
+c_value=input('Enter value of current (in uA/cm2):');
+c_time=input('Enter the time for which the current is applied (in ms, max: 100ms):');
 limit=c_time/d;
 I(1:limit)=c_value;
    
@@ -56,15 +56,18 @@ h(1) = Ah0/(Ah0+Bh0);
         m(i+1) = m(i)+d*(Am(i)*(1-m(i))-Bm(i)*m(i));
         n(i+1) = n(i)+d*(An(i)*(1-n(i))-Bn(i)*n(i));
         h(i+1) = h(i)+d*(Ah(i)*(1-h(i))-Bh(i)*h(i));
-   end
+    end
+    
+%Aid in plotting
 gNa(mx+1)=gNa(mx);
 gK(mx+1)=gK(mx);
 
+%Plotting
 Vm=V+Vrest;
 figure(1);
 subplot(1,2,1)
 plot(t,Vm)
-title('V_membrane vs Time')
+title('V_m vs Time')
 ylabel('Membrane Voltage(mV)')
 xlabel('Time(ms)')
 subplot(1,2,2)
